@@ -79,7 +79,8 @@
   							<span class="icon-bar"></span>
   							<span class="icon-bar"></span>
   						</button>
-  						<a class="navbar-brand" href="#">Profile</a>
+  						<a class="navbar-brand" href="#">Profile {{title}}</a>
+              <p>{{body}}</p>
   					</div>
   					<div class="collapse navbar-collapse">
   						<ul class="nav navbar-nav navbar-right">
@@ -213,7 +214,8 @@ export default {
   name: 'app',
   data () {
     return {
-      title: 'Welcome to Your Vue.js App'
+      title: 'Welcome to Your Vue.js App',
+      body: 'test'
     }
   },
   mounted() {
@@ -228,5 +230,24 @@ export default {
       // error callback
     })
   }
+  // mounted() {
+  //   var url = 'http://vps272180.ovh.net:5984/node/_all_docs?include_docs=true&conflicts=true'
+  //   this.$http.get(url)
+  //     .then(response => {
+  //     var array = []
+  //     response.data.rows.forEach(function(item, index){
+  //       array.push(item.doc)
+  //       console.log(response)
+  //     })
+  //     this.channels = array
+  //     console.log(this.channels)
+         
+  //   }, response => {
+  //     // error callback
+  //   })
+  // }
 }
 </script>
+
+
+
