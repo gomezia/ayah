@@ -41,11 +41,6 @@ import store from '../../store/Store'
 import {mapActions} from 'vuex'
 import {mapGetters} from 'vuex'
 
-$(document).ready(function() {
-  $('#summernote').summernote();
-});
-
-
 export default {
   name: 'AddNode',
   store: store,
@@ -92,5 +87,11 @@ export default {
       })
     }
   },
+  mounted(){
+    //do something after mounting vue instance
+
+      $('#summernote').summernote();
+
+  }
 }
 </script>
