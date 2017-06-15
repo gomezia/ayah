@@ -1,5 +1,16 @@
 <template>
     <div class="container ">
+
+      <div class="card">
+          <div class="card-header" data-background-color="purple">
+              <h4 class="title">Content</h4>
+              <p class="category">Here is a subtitle for this table</p>
+          </div>
+          <div class="card-content table-responsive">
+      <table class="table"><tbody><tr><td><div class="checkbox"><label><input name="optionsCheckboxes" checked="checked" type="checkbox"><span class="checkbox-material"><span class="check"></span></span></label></div></td> <td>Sign contract for "What are conference organizers afraid of?"</td> <td class="td-actions text-right"><button type="button" rel="tooltip" title="" data-original-title="Edit Task" class="btn btn-primary btn-simple btn-xs"><i class="material-icons">edit</i> <div class="ripple-container"></div></button> <button type="button" rel="tooltip" title="" data-original-title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="material-icons">close</i> <div class="ripple-container"></div></button></td></tr> <tr><td><div class="checkbox"><label><input name="optionsCheckboxes" type="checkbox"><span class="checkbox-material"><span class="check"></span></span></label></div></td> <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td> <td class="td-actions text-right"><button type="button" rel="tooltip" title="" data-original-title="Edit Task" class="btn btn-primary btn-simple btn-xs"><i class="material-icons">edit</i></button> <button type="button" rel="tooltip" title="" data-original-title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="material-icons">close</i></button></td></tr> <tr><td><div class="checkbox"><label><input name="optionsCheckboxes" type="checkbox"><span class="checkbox-material"><span class="check"></span></span></label></div></td> <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+  														</td> <td class="td-actions text-right"><button type="button" rel="tooltip" title="" data-original-title="Edit Task" class="btn btn-primary btn-simple btn-xs"><i class="material-icons">edit</i></button> <button type="button" rel="tooltip" title="" data-original-title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="material-icons">close</i></button></td></tr> <tr><td><div class="checkbox"><label><input name="optionsCheckboxes" checked="checked" type="checkbox"><span class="checkbox-material"><span class="check"></span></span></label></div></td> <td>Create 4 Invisible User Experiences you Never Knew About</td> <td class="td-actions text-right"><button type="button" rel="tooltip" title="" data-original-title="Edit Task" class="btn btn-primary btn-simple btn-xs"><i class="material-icons">edit</i></button> <button type="button" rel="tooltip" title="" data-original-title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="material-icons">close</i></button></td></tr></tbody></table>
+                            </div>
+                        </div>
       <div v-for="node in nodes">
         <h2>{{node.title}}</h2>
         <p v-html="node.body"></p>
