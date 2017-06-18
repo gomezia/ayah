@@ -41,16 +41,12 @@
                       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                            </div>
                             <div class="modal-body">
-                              Do you realy want to delete that node ?
+                              <p class="text-danger">Do you realy want to delete that node ?</p>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
-                              <button type="button" class="btn btn-info btn-simple" data-dismiss="modal" @click.prevent="confirmDeleteNode()">Delete</button>
+                              <button type="button" class="btn btn-success btn-simple" data-dismiss="modal" @click.prevent="confirmDeleteNode()">Delete</button>
                             </div>
                           </div>
                         </div>

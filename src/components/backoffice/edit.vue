@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary pull-right" @click.prevent="saveNode()"><i class="material-icons">check</i> Save</button>
+                                <button type="submit" class="btn btn-success pull-right" @click.prevent="saveNode()"><i class="material-icons">check</i> Save</button>
                                 <button type="submit" class="btn btn-warning pull-right" @click.prevent="cancel()"><i class="material-icons">cancel</i> cancel</button>
                                 <div class="clearfix"></div>
                             </form>

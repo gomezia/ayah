@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper blog">
-  <nav class="navbar navbar-ayah" role="navigation">
+  <nav class="navbar navbar-ayah navbar-fixed-top" role="navigation">
   	<div class="container-fluid">
       	<div class="navbar-header">
       		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -9,7 +9,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
       		</button>
-      		<a class="navbar-brand" href="#">Brand</a>
+      		<a class="navbar-brand" href="#">Ayah</a>
       	</div>
 
       	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
