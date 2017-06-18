@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="/src/assets/img/sidebar-1.jpg">
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text">
@@ -23,7 +23,7 @@
 <script>
 import SidebarMenu from './SidebarMenu.vue'
 import AddNode from './AddNode.vue'
-// Main Menu 
+// Main Menu
 import Sidebar from './Sidebar.vue'
 
 export default {

@@ -11,6 +11,7 @@ Vue.use(VueRouter)
 import Blog from './components/frontoffice/Blog.vue'
 import Dashboard from './components/backoffice/Dashboard.vue'
 import List from './components/backoffice/List.vue'
+import Edit from './components/backoffice/Edit.vue'
 
 const routes = [
 	//route for the home route of the webpage
@@ -19,7 +20,7 @@ const routes = [
 	//route for the about route of the webpage
 	{ path: '/dashboard', component: Dashboard, name: 'dashboard' },
   { path: '/content', component: List, name: 'content' },
-  // {path: '/article/:id(\\d+)', component: Article, name: 'article'}
+  {path: '/node/edit/:id', component: Edit, name: 'edit'}
 ]
 
 const router = new VueRouter({

@@ -54,37 +54,56 @@ export default {
       }
       var url = 'http://vps272180.ovh.net:5984/node'
       // POST /someUrl
-      console.log(this.$http);
-      this.$http.post(url, object).then(response => {
-        //demo.showNotification('top','right')
+      if (title != '') {
+        console.log(title);
+        this.$http.post(url, object).then(response => {
+          //demo.showNotification('top','right')
+          $.notify({
+          icon: "check",
+          message: "Your node has been created successfuly"
+
+          },{
+              type: type[2],
+              timer: 200,
+              placement: {
+                  from: 'top',
+                  align: 'center'
+              }
+          })
+
+          $('#input-title').val('')
+          $('.note-editable').html('')
+
+          // get status
+          response.status;
+
+          // get status text
+          response.statusText;
+
+          // get 'Expires' header
+          response.headers.get('Expires');
+
+          // get body data
+          console.log(response);
+
+        }, response => {
+          // error callback
+        })
+      }
+      else {
         $.notify({
-        icon: "check",
-        message: "Your node has been created successfuly"
+        icon: "warning",
+        message: "The title should not be empty"
 
         },{
-            type: type[2],
+            type: type[4],
             timer: 200,
             placement: {
                 from: 'top',
                 align: 'center'
             }
-        });
-
-        // get status
-        response.status;
-
-        // get status text
-        response.statusText;
-
-        // get 'Expires' header
-        response.headers.get('Expires');
-
-        // get body data
-        console.log(response);
-
-      }, response => {
-        // error callback
-      })
+        })
+      }
     }
   },
   mounted(){

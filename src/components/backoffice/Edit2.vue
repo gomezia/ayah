@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div>
     <div class="sidebar" data-color="purple" data-image="/src/assets/img/sidebar-1.jpg">
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text">
@@ -17,7 +17,7 @@
               <div class="row">
                   <div class="col-md-12">
 
-                    <div class="card">
+                    <div class="card" v-show="!edit">
                       <div class="card-header" data-background-color="purple">
                           <h4 class="title">Content</h4>
                           <p class="category">Here is a subtitle for this table</p>
@@ -28,7 +28,10 @@
                               <tr v-for="node in nodes">
                                 <td>{{node.title}}</td>
                                 <td class="td-actions text-right">
-                                <router-link :to="{name: 'edit', params: {id: node._id}}" class="item"><i class="material-icons">edit</i><div class="ripple-container"></div></router-link>
+                                <button type="button" rel="tooltip" title="" data-original-title="Edit Task" class="btn btn-primary btn-simple btn-xs" @click.prevent="editNode(node)">
+                                <i class="material-icons">edit</i>
+                                <div class="ripple-container"></div>
+                                </button>
                                 <button type="button" rel="tooltip" title="" data-original-title="Remove" class="btn btn-danger btn-simple btn-xs">
                                 <i class="material-icons">close</i> <div class="ripple-container"></div></button>
                                 </td>
@@ -37,14 +40,41 @@
                           </table>
                         </div>
                       </div>
+
+                      <div class="card" v-show="edit">
+                          <div class="card-content">
+                              <form>
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                          <label class="control-label">Title</label>
+
+                                          <input id="input-title" type="text" class="form-control" :value="nodeToEdit.title">
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                          <div class="form-group">
+                                              <label>Body</label>
+                                              <div class="form-group label-floating">
+                                                  <div id="summernote">{{nodeToEdit.title}}</div>
+                                               </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <button type="submit" class="btn btn-primary pull-right" @click.prevent="saveNode()">Save</button>
+                                  <div class="clearfix"></div>
+                              </form>
+                          </div>
+                      </div>
                   </div>
               </div>
           </div>
         </div>
     </div>
   </div>
-
-
 </template>
 
 <script>
@@ -60,6 +90,12 @@ import Sidebar from './Sidebar.vue'
 export default {
   name: 'List',
   store: store,
+  data() {
+      return {
+        edit: false,
+        nodeToEdit: ''
+      }
+  },
   computed: {
     ...mapGetters({
       nodes: 'getNodes',
@@ -67,6 +103,23 @@ export default {
   },
   methods: {
     ...mapActions(['actionLoadNodes']),
+    editNode(node) {
+      this.edit = true
+      $('#summernote').summernote()
+      this.nodeToEdit = node
+      $.notify({
+      icon: "check",
+      message: node.title
+
+      },{
+          type: type[1],
+          timer: 200,
+          placement: {
+              from: 'top',
+              align: 'center'
+          }
+      });
+    }
   },
   components: {
     SidebarMenu, Sidebar
