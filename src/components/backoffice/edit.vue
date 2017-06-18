@@ -42,7 +42,7 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-primary pull-right" @click.prevent="saveNode()"><i class="material-icons">check</i> Save</button>
-                                <button type="submit" class="btn btn-warning pull-right" @click.prevent="saveNode()"><i class="material-icons">cancel</i> cancel</button>
+                                <button type="submit" class="btn btn-warning pull-right" @click.prevent="cancel()"><i class="material-icons">cancel</i> cancel</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
@@ -107,9 +107,6 @@ export default {
 
           this.$router.push('/content')
 
-          $('#input-title').val('')
-          $('.note-editable').html('')
-
           // get status
           response.status;
 
@@ -152,6 +149,9 @@ export default {
             }
         })
       }
+    },
+    cancel() {
+      this.$router.push('/content')
     }
   },
   mounted(){

@@ -9,13 +9,13 @@
       </li>
       <li>
         <router-link :to="{name: 'content'}" class="item">
-          <i class="material-icons">content_paste</i>
+          <i class="material-icons">list</i>
           <p>Content</p>
         </router-link>
       </li>
       <li>
           <router-link :to="{name: 'blog'}" class="item">
-            <i class="material-icons">person</i>
+            <i class="material-icons">home</i>
             <p>Back to Blog</p>
           </router-link>
       </li>
