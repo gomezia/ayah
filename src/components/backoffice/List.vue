@@ -19,13 +19,21 @@
 
                     <div class="card">
                       <div class="card-header" data-background-color="purple">
-                          <h4 class="title">Content</h4>
-                      </div>
+	                       <h4 class="title">Content</h4>
+	                    </div>
                       <div class="card-content table-responsive">
-                        <table class="table">
+                        <table class="table table-hover">
+                          <thead class="text-default">
+                          	 <tr>
+                               <th>Title</th>
+                          	   <th>Created</th>
+                          	   <th>Actions</th>
+                          	 </tr>
+                           </thead>
                           <tbody>
                               <tr v-for="node in nodes">
                                 <td><router-link :to="{name: 'node', params: {id: node._id}}" class="item">{{node.title}}</router-link></td>
+                                <td>{{node.created | moment("calendar", "July 10 2011") }}</td>
                                 <td class="td-actions text-right">
                                 <router-link :to="{name: 'edit', params: {id: node._id}}" class="item"><i class="material-icons">edit</i><div class="ripple-container"></div></router-link>
                                 <button type="button" rel="tooltip" title="" data-original-title="Remove" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal" @click.prevent="deleteNode(node)">

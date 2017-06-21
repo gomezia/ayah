@@ -30,6 +30,10 @@
         <h1>{{node.title}}</h1>
         <p>{{node.created | moment("dddd, MMMM Do YYYY") }}</p>
         <p v-html="node.body"></p>
+        <router-link :to="{name: 'blog'}" class="item">
+          <i class="material-icons">back</i>
+          <p>< Back to Home</p>
+        </router-link>
     </div>
   </div>
 </template>
