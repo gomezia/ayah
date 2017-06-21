@@ -73,20 +73,7 @@ export default {
   },
   mounted() {
     this.loading = true
-    var url = 'http://vps272180.ovh.net:5984/node/_all_docs?include_docs=true&conflicts=true'
-    this.$http.get(url)
-      .then(response => {
-      var array = []
-      response.data.rows.forEach(function(item, index){
-        array.push(item.doc)
-      })
-      this.loading = false
-      this.actionLoadNodes(array)
-
-
-    }, response => {
-      // error callback
-    })
+    this.actionLoadNodes()
   }
 }
 </script>
