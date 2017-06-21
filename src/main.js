@@ -2,10 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import Moment from 'vue-moment'
 import App from './App.vue'
+
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
+Vue.use(Moment)
 
 
 import Blog from './components/frontoffice/Blog.vue'

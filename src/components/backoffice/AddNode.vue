@@ -50,7 +50,8 @@ export default {
       var body =  $('.note-editable').html()
       var object = {
         'title': title,
-        'body': body
+        'body': body,
+        'created': + new Date()
       }
       var url = 'http://vps272180.ovh.net:5984/node'
       // POST /someUrl

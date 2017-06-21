@@ -83,7 +83,9 @@ export default {
         '_id': this.node._id,
         '_rev': this.node._rev,
         'title': title,
-        'body': body
+        'body': body,
+        'created': this.node.created,
+        'updated': + new Date()
       }
 
       var url = 'http://vps272180.ovh.net:5984/node/' + this.node._id

@@ -44,6 +44,9 @@
 
       <div v-for="node in nodes">
         <h2>{{node.title}}</h2>
+        <!-- <p>{{date | moment("from", "now")}}</p> -->
+        <p>{{node.date | moment("dddd, MMMM Do YYYY") }}</p>
+
         <p v-html="node.body"></p>
       </div>
     </div>
@@ -60,13 +63,15 @@ export default {
   store: store,
   data() {
     return {
-      loading: false
+      loading: false,
+      date: 1481889223
     }
   },
   computed: {
     ...mapGetters({
       nodes: 'getNodes',
     }),
+    date2: _=> + new Date()
   },
   methods: {
     ...mapActions(['actionLoadNodes']),
