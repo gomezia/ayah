@@ -14,12 +14,6 @@
         </router-link>
       </li>
       <li>
-          <router-link :to="{name: 'configuration'}" class="item">
-            <i class="material-icons">settings</i>
-            <p>Settings</p>
-          </router-link>
-      </li>
-      <li>
           <router-link :to="{name: 'blog'}" class="item">
             <i class="material-icons">home</i>
             <p>Back to Blog</p>

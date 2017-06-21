@@ -7,22 +7,16 @@ Vue.use(Vuex)
 
 const my_state = {
   nodes: {},
-  settings: {},
-  blog: {}
 }
 
 const my_mutations = {
   LOAD_NODES: (state, object) => {
     state.nodes = object
-  },
-  LOAD_SETTINGS: (state, object) => {
-    state.settings = object
   }
 }
 
 const my_getters = {
   getNodes: state => state.nodes,
-  getSettings: state => state.settings,
 }
 
 const my_actions = {
@@ -42,9 +36,6 @@ const my_actions = {
     }, response => {
       // error callback
     })
-  },
-  actionLoadSettings: (store, object) => {
-    store.commit("LOAD_SETTINGS", object)
   }
 }
 
