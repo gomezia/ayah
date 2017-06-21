@@ -25,7 +25,7 @@
                         <table class="table">
                           <tbody>
                               <tr v-for="node in nodes">
-                                <td><router-link :to="{name: 'blog'}" class="item">{{node.title}}</router-link></td>
+                                <td><router-link :to="{name: 'node', params: {id: node._id}}" class="item">{{node.title}}</router-link></td>
                                 <td class="td-actions text-right">
                                 <router-link :to="{name: 'edit', params: {id: node._id}}" class="item"><i class="material-icons">edit</i><div class="ripple-container"></div></router-link>
                                 <button type="button" rel="tooltip" title="" data-original-title="Remove" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal" @click.prevent="deleteNode(node)">

@@ -25,47 +25,39 @@
   	</div>
   </nav>
     <div class="container">
-      <router-view></router-view>
+
       <div class="loadersmall" v-if="loading"></div>
-
-      <div v-for="node in nodes">
-        <h2><router-link :to="{name: 'node', params: {id: node._id}}" class="item">{{node.title}}</router-link></h2>
-        <!-- <p>{{date | moment("from", "now")}}</p> -->
-        <p>{{node.date | moment("dddd, MMMM Do YYYY") }}</p>
-
+        <h1>{{node.title}}</h1>
+        <p>{{node.created | moment("dddd, MMMM Do YYYY") }}</p>
         <p v-html="node.body"></p>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import store from '../../store/Store'
-import {mapActions} from 'vuex'
-import {mapGetters} from 'vuex'
 
 export default {
-  name: 'Blog',
-  store: store,
-  data() {
+  name: 'Node',
+  data () {
     return {
-      loading: false,
-      date: 1481889223
+      node: {},
+      loading: false
     }
-  },
-  computed: {
-    ...mapGetters({
-      nodes: 'getNodes',
-    }),
-    date2: _=> + new Date()
-  },
-  methods: {
-    ...mapActions(['actionLoadNodes']),
   },
   mounted() {
     this.loading = true
-    this.actionLoadNodes()
-    this.loading = false
+    var id = this.$route.params.id
+    this.$node = this.$resource('http://vps272180.ovh.net:5984/node/' + id)
+    console.log(id)
+
+    this.$node.query().then((response)=> {
+        this.node = response.body
+        console.log(this.node)
+    }, (response) => {
+       console.log('error', response)
+    }).then(_ =>{
+      this.loading = false
+    })
   }
 }
 </script>
