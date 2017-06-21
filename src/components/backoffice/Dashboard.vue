@@ -3,7 +3,7 @@
     <div class="sidebar" data-color="purple" data-image="/src/assets/img/sidebar-1.jpg">
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text">
-          Creative Tim
+          Ayah
         </a>
       </div>
 

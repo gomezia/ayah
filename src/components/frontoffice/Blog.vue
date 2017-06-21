@@ -9,7 +9,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
       		</button>
-      		<a class="navbar-brand" href="#">Ayah</a>
+      		<a class="navbar-brand" href="#">AYAH</a>
       	</div>
 
       	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -32,8 +32,6 @@
         <h2><router-link :to="{name: 'node', params: {id: node._id}}" class="item">{{node.title}}</router-link></h2>
         <!-- <p>{{date | moment("from", "now")}}</p> -->
         <p>{{node.date | moment("dddd, MMMM Do YYYY") }}</p>
-
-        <p v-html="node.body"></p>
       </div>
     </div>
   </div>

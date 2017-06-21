@@ -9,7 +9,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
       		</button>
-      		<a class="navbar-brand" href="#">Ayah</a>
+      		<a class="navbar-brand" href="#">AYAH</a>
       	</div>
 
       	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -28,7 +28,7 @@
 
       <div class="loadersmall" v-if="loading"></div>
         <h1>{{node.title}}</h1>
-        <p>{{node.created | moment("dddd, MMMM Do YYYY") }}</p>
+        <p><i class="material-icons time-icon">access_time</i> <span class="text-time">{{node.created | moment("dddd, MMMM Do YYYY") }}</span></p>
         <p v-html="node.body"></p>
         <router-link :to="{name: 'blog'}" class="item">
           <i class="material-icons">back</i>
