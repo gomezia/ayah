@@ -9,7 +9,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
       		</button>
-      		<a class="navbar-brand" href="#">AYAH</a>
+      		<router-link :to="{name: 'blog'}" id="logo"><img src="/logo-ayah.png"><span>Ayah</span></router-link>
       	</div>
 
       	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -17,7 +17,7 @@
             <li>
               <router-link :to="{name: 'dashboard'}" class="item">
                 <i class="material-icons">dashboard</i>
-                Back to dashboard
+                Dashboard
               </router-link>
             </li>
       		</ul>

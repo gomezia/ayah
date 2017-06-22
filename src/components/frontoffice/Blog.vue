@@ -9,7 +9,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
       		</button>
-      		<a class="navbar-brand" href="#">AYAH</a>
+      		<router-link :to="{name: 'blog'}" id="logo"><img src="/logo-ayah.png"><span>Ayah</span></router-link>
       	</div>
 
       	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -17,7 +17,7 @@
             <li>
               <router-link :to="{name: 'dashboard'}" class="item">
                 <i class="material-icons">dashboard</i>
-                Back to dashboard
+                Dashboard
               </router-link>
             </li>
       		</ul>
@@ -27,8 +27,18 @@
     <div class="container">
       <router-view></router-view>
       <div class="loadersmall" v-if="loading"></div>
+    </div>
+      <!-- jumbotron -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1>Hello Ayah</h1>
+          <p>The lightweight CMS made with Vuejs, CouchDB and Bootstrap</p>
+        </div>
+      </div>
 
-      <div v-for="node in nodes">
+
+    <div class="container">
+      <div v-for="node in nodes" class="blog-node">
         <h2><router-link :to="{name: 'node', params: {id: node._id}}" class="item">{{node.title}}</router-link></h2>
         <!-- <p>{{date | moment("from", "now")}}</p> -->
         <p>{{node.date | moment("dddd, MMMM Do YYYY") }}</p>

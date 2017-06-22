@@ -88,10 +88,41 @@ a.edit-icon, a.edit-icon:hover, a.edit-icon:focus {
 
 /* Material UI Blog*/
 .blog a {
-  color: #42B9A5;
+  color: #3AB982;
 }
 
 .navbar, .navbar.navbar-ayah {
-  background-color: #35BDB2;
+  color: #34495e;
+  box-shadow: 0 0 1px rgba(0,0,0,0.25);
+  background-color: #fff;
+  padding: 0px 60px;
+}
+
+#logo {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 1.3em;
+    line-height: 40px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+#logo img {
+    vertical-align: top;
+    margin-right: 6px;
+    width: 35px;
+    height: 35px;
+}
+
+.blog .jumbotron {
+  margin-top: -20px;
   color: #FFFFFF;
+  background: url('/logo-ayah.png') #3AB982 no-repeat right -117px;
+}
+
+.blog-node {
+  border-bottom: solid 1px #eee;
+}
+
+.table .td-actions {
+    display: table-cell;
 }
