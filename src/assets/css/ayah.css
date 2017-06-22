@@ -60,7 +60,7 @@ h1, h2, h3 {
 
 /* Tokens tags */
 .tokenfield .token {
-  background-color: #35BDB2;
+  background-color: #e91e63;
   border: none;
   color: white;
 }
@@ -68,4 +68,30 @@ h1, h2, h3 {
 .tokenfield .token:hover {
   background: red;
   border: none;
+}
+
+/* Material UI dashboard*/
+.sidebar[data-color="purple"] .nav li.active a, .off-canvas-sidebar[data-color="purple"] .nav li.active a, .sidebar[data-color="purple"] .nav li a.router-link-exact-active, .off-canvas-sidebar[data-color="purple"] .nav li a.router-link-exact-active{
+  background-color: #e91e63;
+}
+.card [data-background-color="purple"] {
+  background: linear-gradient(60deg, #e91e63, #e91e63);
+}
+a, a:hover, a:focus {
+  color: #e91e63;
+  text-decoration: none;
+}
+
+a.edit-icon, a.edit-icon:hover, a.edit-icon:focus {
+  color: #3AB982;
+}
+
+/* Material UI Blog*/
+.blog a {
+  color: #42B9A5;
+}
+
+.navbar, .navbar.navbar-ayah {
+  background-color: #35BDB2;
+  color: #FFFFFF;
 }

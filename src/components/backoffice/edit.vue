@@ -49,6 +49,7 @@
                                       <div class="form-group">
                                         <label class="control-label">Tags</label>
                                         <input type="text" class="form-control" id="tokenfield-edit" :value="node.tags"/>
+                                        <span><i>Add several tags separated by comma</i></span>
                                       </div>
                                     </div>
                                 </div>
@@ -96,7 +97,7 @@ export default {
       $(".token-label").each(function() {
           tags.push($(this).html())
       })
-      
+
       var object = {
         '_id': this.node._id,
         '_rev': this.node._rev,

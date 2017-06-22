@@ -18,16 +18,16 @@
                   <div class="col-md-12">
                     <h2>Content</h2>
                     <div class="card">
-                      <div class="card-header" data-background-color="purple">
+                      <!-- <div class="card-header" data-background-color="purple">
 	                       <h4 class="title">Content</h4>
-	                    </div>
+	                    </div> -->
                       <div class="card-content table-responsive">
                         <table class="table table-hover">
                           <thead class="text-default">
                           	 <tr>
-                               <th>Title</th>
-                          	   <th>Created</th>
-                          	   <th>Actions</th>
+                               <th><strong>Title</strong></th>
+                          	   <th><strong>Created</strong></th>
+                          	   <th><strong>Actions</strong></th>
                           	 </tr>
                            </thead>
                           <tbody>
@@ -35,7 +35,7 @@
                                 <td><router-link :to="{name: 'node', params: {id: node._id}}" class="item">{{node.title}}</router-link></td>
                                 <td>{{node.created | moment("calendar", "July 10 2011") }}</td>
                                 <td class="td-actions text-right">
-                                <router-link :to="{name: 'edit', params: {id: node._id}}" class="item"><i class="material-icons">edit</i><div class="ripple-container"></div></router-link>
+                                <router-link :to="{name: 'edit', params: {id: node._id}}" class="item edit-icon"><i class="material-icons">edit</i><div class="ripple-container"></div></router-link>
                                 <button type="button" rel="tooltip" title="" data-original-title="Remove" class="btn btn-danger btn-simple btn-xs" data-toggle="modal" data-target="#myModal" @click.prevent="deleteNode(node)">
                                 <i class="material-icons">delete</i> <div class="ripple-container"></div></button>
                                 </td>
