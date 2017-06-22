@@ -48,7 +48,6 @@ export default {
   data() {
     return {
       loading: false,
-      date: 1481889223
     }
   },
   computed: {

@@ -21,15 +21,17 @@
                     <div class="card">
                         <div class="card-content">
                             <form>
+                              <!-- Title -->
                                 <div class="row">
                                     <div class="col-md-12">
                                       <div class="form-group label-floating">
                                         <label class="control-label">Title</label>
-
                                         <input id="input-title" type="text" class="form-control" :value="node.title">
                                       </div>
                                     </div>
                                 </div>
+
+                              <!-- Body -->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -41,6 +43,17 @@
                                     </div>
                                 </div>
 
+                                <!-- Tags -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label class="control-label">Tags</label>
+                                        <input type="text" class="form-control" id="tokenfield-edit" :value="node.tags"/>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <!-- Actions -->
                                 <button type="submit" class="btn btn-success pull-right" @click.prevent="saveNode()"><i class="material-icons">check</i> Save</button>
                                 <button type="submit" class="btn btn-warning pull-right" @click.prevent="cancel()"><i class="material-icons">cancel</i> cancel</button>
                                 <div class="clearfix"></div>
@@ -79,11 +92,17 @@ export default {
     saveNode() {
       var title = $('#input-title').val()
       var body =  $('.note-editable').html()
+      var tags = []
+      $(".token-label").each(function() {
+          tags.push($(this).html())
+      })
+      
       var object = {
         '_id': this.node._id,
         '_rev': this.node._rev,
         'title': title,
         'body': body,
+        'tags': tags,
         'created': this.node.created,
         'updated': + new Date()
       }
@@ -169,7 +188,11 @@ export default {
     }).then(_ =>{
        this.loading = false
        $('#summernote').summernote()
+       $('#tokenfield-edit').tokenfield()
+       console.log($('#tokenfield-edit').tokenfield('getTokens'))
      })
+
+
 
   }
 }

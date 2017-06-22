@@ -47,13 +47,25 @@ h1, h2, h3 {
 }
 
 /*Blog Time*/
-.time-icon {
+.material-icons.time-icon {
     display: inline-block;
     float: left;
     margin-right: 5px;
+    font-size: 20px;
 }
 
 .text-time {
     display: inline-block;
-    margin-top: 2px;
+}
+
+/* Tokens tags */
+.tokenfield .token {
+  background-color: #35BDB2;
+  border: none;
+  color: white;
+}
+
+.tokenfield .token:hover {
+  background: red;
+  border: none;
 }
