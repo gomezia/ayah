@@ -1,6 +1,6 @@
 {
   "name": "ayahcms",
-  "description": "vuejs + couchdb cms",
+  "description": "LightWeight CMS made with Vuejs, Couchdb and Bootstrap",
   "version": "1.0.0",
   "author": "Mustapha MEZIANE",
   "private": true,
