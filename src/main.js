@@ -13,9 +13,12 @@ Vue.use(Moment)
 
 import Blog from './components/frontoffice/Blog.vue'
 import Node from './components/frontoffice/Node.vue'
+import Tag from './components/frontoffice/Tag.vue'
+
 import Dashboard from './components/backoffice/Dashboard.vue'
 import List from './components/backoffice/List.vue'
 import Edit from './components/backoffice/Edit.vue'
+
 
 
 const routes = [
@@ -27,7 +30,7 @@ const routes = [
   { path: '/content', component: List, name: 'content' },
   {path: '/node/:id/edit', component: Edit, name: 'edit'},
   {path: '/node/:id', component: Node, name: 'node'},
-
+  {path: '/tag/:id', component: Tag, name: 'tag'},
 ]
 
 const router = new VueRouter({
