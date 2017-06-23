@@ -36,7 +36,8 @@
           <div v-if="hasTags">
             <p>Tags:</p>
             <ul class="list-inline">
-              <li v-for="tag in node.tags"><i class="material-icons time-icon">label_outline</i><span class="text-time">{{tag}}</span></li>
+              <li v-for="tag in node.tags">
+                <i class="material-icons time-icon">label_outline</i><span class="text-time"><router-link :to="{name: 'tag', params: {id: tag}}" class="item">{{tag}}</router-link></span></li>
             </ul>
           </div>
 
