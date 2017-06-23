@@ -26,27 +26,26 @@
   </nav>
     <div class="container">
       <div class="loadersmall" v-if="loading"></div>
-
-          <h1>{{node.title}}</h1>
-          <p><i class="material-icons time-icon">access_time</i> <span class="text-time">{{node.created | moment("dddd, MMMM Do YYYY") }}</span></p>
-
-          <p v-html="node.body"></p>
-
-          <!-- Tags -->
-          <div v-if="hasTags">
-            <p>Tags:</p>
-            <ul class="list-inline">
-              <li v-for="tag in node.tags">
-                <i class="material-icons time-icon">label_outline</i><span class="text-time"><router-link :to="{name: 'tag', params: {id: tag}}" class="item">{{tag}}</router-link></span></li>
-            </ul>
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 col-md-9"><h1>{{node.title}}</h1></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 col-md-9">
+            <p><i class="material-icons time-icon">access_time</i> <span class="text-time">{{node.created | moment("dddd, MMMM Do YYYY") }}</span></p>
+            <p v-html="node.body"></p>
           </div>
-
-          <router-link :to="{name: 'blog'}" class="item">
-            <i class="material-icons">back</i>
-            <p>< Back to Home</p>
-          </router-link>
-
-      
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <!-- Tags -->
+            <div v-if="hasTags">
+              <p>Tags:</p>
+              <ul class="list-inline">
+                <li v-for="tag in node.tags">
+                  <i class="material-icons time-icon">label_outline</i><span class="text-time"><router-link :to="{name: 'tag', params: {id: tag}}" class="item">{{tag}}</router-link></span></li>
+              </ul>
+            </div>
+            <router-link :to="{name: 'blog'}" class="item"><i class="material-icons">back</i><p>< Back to Home</p></router-link>
+          </div>
+        </div>
     </div>
   </div>
 </template>

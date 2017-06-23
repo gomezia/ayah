@@ -125,7 +125,7 @@ export default {
               timer: 200,
               placement: {
                   from: 'top',
-                  align: 'center'
+                  align: 'right'
               }
           })
 
@@ -154,7 +154,7 @@ export default {
               timer: 200,
               placement: {
                   from: 'top',
-                  align: 'center'
+                  align: 'right'
               }
           })
         })
@@ -192,7 +192,15 @@ export default {
       // error callback
     }).then(_ =>{
        this.loading = false
-       $('#summernote').summernote()
+       //$('#summernote').summernote()
+
+      $('#summernote').summernote({
+        codemirror: { // codemirror options
+          theme: 'monokai'
+        }
+      })
+
+
        $('#tokenfield-edit').tokenfield()
        console.log($('#tokenfield-edit').tokenfield('getTokens'))
      })

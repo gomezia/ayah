@@ -92,7 +92,7 @@ export default {
               timer: 200,
               placement: {
                   from: 'top',
-                  align: 'center'
+                  align: 'right'
               }
           })
 
@@ -125,7 +125,7 @@ export default {
             timer: 200,
             placement: {
                 from: 'top',
-                align: 'center'
+                align: 'right'
             }
         })
       }
