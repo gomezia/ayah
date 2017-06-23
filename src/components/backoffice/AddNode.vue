@@ -77,7 +77,8 @@ export default {
         'tags': tags,
         'created': + new Date()
       }
-      var url = 'http://127.0.0.1:5984/node'
+      //var url = 'http://127.0.0.1:5984/node'
+      var url = 'http://vps272180.ovh.net:5984/node'
       // POST /someUrl
       if (title != '') {
         console.log(title);

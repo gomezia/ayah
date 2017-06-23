@@ -64,8 +64,8 @@ export default {
   mounted() {
     this.loading = true
     var id = this.$route.params.id
-    //this.$node = this.$resource('http://vps272180.ovh.net:5984/node/' + id)
-    this.$node = this.$resource('http://127.0.0.1:5984/node/' + id)
+    this.$node = this.$resource('http://vps272180.ovh.net:5984/node/' + id)
+    //this.$node = this.$resource('http://127.0.0.1:5984/node/' + id)
     console.log(id)
 
     this.$node.query().then((response)=> {

@@ -100,8 +100,8 @@ export default {
     },
     confirmDeleteNode() {
 
-      //var url = 'http://vps272180.ovh.net:5984/node/' + this.nodeTodelete._id + '?rev=' + this.nodeTodelete._rev
-      var url = 'http://127.0.0.1:5984/node/' + this.nodeTodelete._id + '?rev=' + this.nodeTodelete._rev
+      var url = 'http://vps272180.ovh.net:5984/node/' + this.nodeTodelete._id + '?rev=' + this.nodeTodelete._rev
+      //var url = 'http://127.0.0.1:5984/node/' + this.nodeTodelete._id + '?rev=' + this.nodeTodelete._rev
 
 
       this.$http.delete(url).then(response => {

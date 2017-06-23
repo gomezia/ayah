@@ -108,9 +108,9 @@ export default {
         'updated': + new Date()
       }
 
-      //var url = 'http://vps272180.ovh.net:5984/node/' + this.node._id
-      var url = 'http://127.0.0.1:5984/node/' + this.node._id
-      
+      var url = 'http://vps272180.ovh.net:5984/node/' + this.node._id
+      //var url = 'http://127.0.0.1:5984/node/' + this.node._id
+
 
       // POST /someUrl
       if (title != '') {
@@ -180,8 +180,8 @@ export default {
   },
   mounted(){
 
-    //var url = 'http://vps272180.ovh.net:5984/node/' + this.$route.params.id
-    var url = 'http://127.0.0.1:5984/node/' + this.$route.params.id
+    var url = 'http://vps272180.ovh.net:5984/node/' + this.$route.params.id
+    //var url = 'http://127.0.0.1:5984/node/' + this.$route.params.id
 
     this.loading = true
     this.$http.get(url)

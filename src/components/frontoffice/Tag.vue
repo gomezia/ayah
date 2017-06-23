@@ -65,8 +65,8 @@ export default {
     var id = this.$route.params.id
     this.tag = id
 
-    //this.$node = this.$resource('http://vps272180.ovh.net:5984/node/_design/ayah/_view/nodeByTag?key="' + id + '"')
-    this.$node = this.$resource('http://127.0.0.1:5984/node/_design/ayah/_view/nodeByTag?key="' + id + '"')
+    this.$node = this.$resource('http://vps272180.ovh.net:5984/node/_design/ayah/_view/nodeByTag?key="' + id + '"')
+    //this.$node = this.$resource('http://127.0.0.1:5984/node/_design/ayah/_view/nodeByTag?key="' + id + '"')
     console.log(id)
 
     this.$node.query().then((response)=> {

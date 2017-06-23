@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 const my_state = {
   nodes: {},
+  baseUrl: 'http://vps272180.ovh.net:5984/',
 }
 
 const my_mutations = {
@@ -17,12 +18,13 @@ const my_mutations = {
 
 const my_getters = {
   getNodes: state => state.nodes,
+  baseUrl: state => state.baseUrl,
 }
 
 const my_actions = {
   actionLoadNodes: (store) => {
-    //var url = 'http://vps272180.ovh.net:5984/node/_all_docs?include_docs=true&conflicts=true'
-    var url = 'http://127.0.0.1:5984/node/_all_docs?include_docs=true&conflicts=true'
+    var url = 'http://vps272180.ovh.net:5984/node/_all_docs?include_docs=true&conflicts=true'
+    //var url = 'http://127.0.0.1:5984/node/_all_docs?include_docs=true&conflicts=true'
     // In Store use Vue.http instead of this.$http
     //https://forum.vuejs.org/t/vue-resource-api-call-inside-mutation-doesnt-recognize-vue/2863/7
     Vue.http.get(url)
