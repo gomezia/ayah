@@ -25,24 +25,27 @@
   	</div>
   </nav>
     <div class="container">
-
       <div class="loadersmall" v-if="loading"></div>
-        <h1>{{node.title}}</h1>
-        <p><i class="material-icons time-icon">access_time</i> <span class="text-time">{{node.created | moment("dddd, MMMM Do YYYY") }}</span></p>
-        <p v-html="node.body"></p>
 
-        <!-- Tags -->
-        <div v-if="hasTags">
-          <p>Tags:</p>
-          <ul class="list-inline">
-            <li v-for="tag in node.tags"><i class="material-icons time-icon">label_outline</i><span class="text-time">{{tag}}</span></li>
-          </ul>
-        </div>
+          <h1>{{node.title}}</h1>
+          <p><i class="material-icons time-icon">access_time</i> <span class="text-time">{{node.created | moment("dddd, MMMM Do YYYY") }}</span></p>
 
-        <router-link :to="{name: 'blog'}" class="item">
-          <i class="material-icons">back</i>
-          <p>< Back to Home</p>
-        </router-link>
+          <p v-html="node.body"></p>
+
+          <!-- Tags -->
+          <div v-if="hasTags">
+            <p>Tags:</p>
+            <ul class="list-inline">
+              <li v-for="tag in node.tags"><i class="material-icons time-icon">label_outline</i><span class="text-time">{{tag}}</span></li>
+            </ul>
+          </div>
+
+          <router-link :to="{name: 'blog'}" class="item">
+            <i class="material-icons">back</i>
+            <p>< Back to Home</p>
+          </router-link>
+
+      
     </div>
   </div>
 </template>
@@ -61,7 +64,8 @@ export default {
   mounted() {
     this.loading = true
     var id = this.$route.params.id
-    this.$node = this.$resource('http://vps272180.ovh.net:5984/node/' + id)
+    //this.$node = this.$resource('http://vps272180.ovh.net:5984/node/' + id)
+    this.$node = this.$resource('http://127.0.0.1:5984/node/' + id)
     console.log(id)
 
     this.$node.query().then((response)=> {

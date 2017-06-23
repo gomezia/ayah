@@ -32,7 +32,7 @@
       <div class="jumbotron">
         <div class="container">
           <h1>Hello Ayah</h1>
-          <p>The lightweight CMS made with Vuejs, CouchDB and Bootstrap</p>
+          <p>Lightweight CMS made with Vuejs, CouchDB and Bootstrap</p>
         </div>
       </div>
 

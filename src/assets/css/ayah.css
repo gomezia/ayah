@@ -87,9 +87,9 @@ a.edit-icon, a.edit-icon:hover, a.edit-icon:focus {
 }
 
 /* Material UI Blog*/
-.blog a {
+/*.blog a {
   color: #3AB982;
-}
+}*/
 
 .navbar, .navbar.navbar-ayah {
   color: #34495e;
@@ -116,7 +116,7 @@ a.edit-icon, a.edit-icon:hover, a.edit-icon:focus {
 .blog .jumbotron {
   margin-top: -20px;
   color: #FFFFFF;
-  background: url('/logo-ayah.png') #3AB982 no-repeat right -117px;
+  background: url('/logo-ayah.png') #35495E no-repeat right -116px;
 }
 
 .blog-node {
@@ -126,3 +126,4 @@ a.edit-icon, a.edit-icon:hover, a.edit-icon:focus {
 .table .td-actions {
     display: table-cell;
 }
+
