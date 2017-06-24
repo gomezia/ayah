@@ -23,8 +23,8 @@ const my_getters = {
 
 const my_actions = {
   actionLoadNodes: (store) => {
-    var url = 'http://vps272180.ovh.net:5984/node/_all_docs?include_docs=true&conflicts=true'
-    //var url = 'http://127.0.0.1:5984/node/_all_docs?include_docs=true&conflicts=true'
+    var url = store.getters.baseUrl + 'node/_all_docs?include_docs=true&conflicts=true'
+
     // In Store use Vue.http instead of this.$http
     //https://forum.vuejs.org/t/vue-resource-api-call-inside-mutation-doesnt-recognize-vue/2863/7
     Vue.http.get(url)
@@ -38,6 +38,19 @@ const my_actions = {
 
     }, response => {
       // error callback
+    })
+  },
+  actionShowNotification: (store, params) => {
+    $.notify({
+    icon: params.icon,
+    message: params.message
+    },{
+        type: params.type,
+        timer: 200,
+        placement: {
+            from: 'top',
+            align: 'right'
+        }
     })
   }
 }

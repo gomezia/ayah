@@ -53,7 +53,6 @@
                                       </div>
                                     </div>
                                 </div>
-
                                 <!-- Actions -->
                                 <button type="submit" class="btn btn-success pull-right" @click.prevent="saveNode()"><i class="material-icons">check</i> Save</button>
                                 <button type="submit" class="btn btn-warning pull-right" @click.prevent="cancel()"><i class="material-icons">cancel</i> cancel</button>
@@ -72,6 +71,9 @@
 </template>
 
 <script>
+import store from '../../store/Store'
+import {mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
 
 import SidebarMenu from './SidebarMenu.vue'
 // Main Menu
@@ -89,7 +91,13 @@ export default {
   components: {
     SidebarMenu, Sidebar
   },
+  computed: {
+    ...mapGetters({
+      baseUrl: 'baseUrl'
+    }),
+  },
   methods: {
+    ...mapActions(['actionShowNotification']),
     saveNode() {
       var title = $('#input-title').val()
       var body =  $('.note-editable').html()
@@ -108,6 +116,8 @@ export default {
         'updated': + new Date()
       }
 
+
+
       var url = 'http://vps272180.ovh.net:5984/node/' + this.node._id
       //var url = 'http://127.0.0.1:5984/node/' + this.node._id
 
@@ -115,20 +125,16 @@ export default {
       // POST /someUrl
       if (title != '') {
         this.$http.put(url, object).then(response => {
-          //demo.showNotification('top','right')
-          $.notify({
-          icon: "check",
-          message: "Your node has been updated successfuly"
 
-          },{
-              type: type[2],
-              timer: 200,
-              placement: {
-                  from: 'top',
-                  align: 'right'
-              }
-          })
+          // Show Message
+          var params = {
+            type: 'success',
+            message: 'Your content has been updated successfuly',
+            icon: 'check'
+          }
+          store.dispatch('actionShowNotification', params)
 
+          // Redirection
           this.$router.push('/content')
 
           // get status
@@ -145,33 +151,24 @@ export default {
 
         }, response => {
           // error callback
-          $.notify({
-          icon: "check",
-          message: "An error has been occured, please try again"
+          var params = {
+            type: 'warning',
+            message: 'An error has been occured, please try again',
+            icon: 'warning'
+          }
 
-          },{
-              type: type[4],
-              timer: 200,
-              placement: {
-                  from: 'top',
-                  align: 'right'
-              }
-          })
+          store.dispatch('actionShowNotification', params)
         })
       }
       else {
-        $.notify({
-        icon: "warning",
-        message: "The title should not be empty"
 
-        },{
-            type: type[4],
-            timer: 200,
-            placement: {
-                from: 'top',
-                align: 'center'
-            }
-        })
+        var params = {
+          type: 'danger',
+          message: 'The title should not be empty',
+          icon: 'warning'
+        }
+        store.dispatch('actionShowNotification', params)
+
       }
     },
     cancel() {

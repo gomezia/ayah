@@ -91,34 +91,25 @@ export default {
   computed: {
     ...mapGetters({
       nodes: 'getNodes',
+      baseUrl: 'baseUrl'
     }),
   },
   methods: {
-    ...mapActions(['actionLoadNodes']),
+    ...mapActions(['actionLoadNodes', 'actionShowNotification']),
     deleteNode(node) {
       this.nodeTodelete = node
     },
     confirmDeleteNode() {
-
-      var url = 'http://vps272180.ovh.net:5984/node/' + this.nodeTodelete._id + '?rev=' + this.nodeTodelete._rev
-      //var url = 'http://127.0.0.1:5984/node/' + this.nodeTodelete._id + '?rev=' + this.nodeTodelete._rev
-
+      var url = this.baseUrl + 'node/' + this.nodeTodelete._id + '?rev=' + this.nodeTodelete._rev
 
       this.$http.delete(url).then(response => {
-        //demo.showNotification('top','right')
-        $.notify({
-        icon: "check",
-        message: "Your content has been deleted"
 
-        },{
-            type: type[2],
-            timer: 200,
-            placement: {
-                from: 'top',
-                align: 'right'
-            }
-        })
-
+        var params = {
+          type: 'success',
+          message: 'Your content has been deleted',
+          icon: 'check'
+        }
+        store.dispatch('actionShowNotification', params)
         // get status
         response.status;
 
@@ -131,26 +122,18 @@ export default {
         var updatedNodes = this.nodes.filter(item => {
           return item._id != this.nodeTodelete._id
         })
-        console.log(updatedNodes)
+
         this.actionLoadNodes(updatedNodes)
 
       }, response => {
         // error callback
-        $.notify({
-        icon: "check",
-        message: "An error has been occured, please try again"
-
-        },{
-            type: type[4],
-            timer: 200,
-            placement: {
-                from: 'top',
-                align: 'right'
-            }
-        })
+        var params = {
+          type: 'danger',
+          message: 'An error has been occured, please try again',
+          icon: 'warning'
+        }
+        store.dispatch('actionShowNotification', params)
       })
-
-
 
     }
   },
@@ -158,7 +141,7 @@ export default {
     SidebarMenu, Sidebar
   },
   mounted() {
-    this.actionLoadNodes()
+    store.dispatch('actionLoadNodes')
   }
 
 

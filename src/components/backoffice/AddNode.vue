@@ -59,43 +59,40 @@ export default {
       tags: '',
     }
   },
+  computed: {
+    ...mapGetters({
+      baseUrl: 'baseUrl'
+    }),
+  },
   methods: {
+    ...mapActions(['actionShowNotification']),
     saveNode() {
-      var title = $('#input-title').val()
-      var body =  $('.note-editable').html()
-      var tags = []
+
+      let tags = []
 
       $(".token-label").each(function() {
           tags.push($(this).html())
       });
 
-      console.log(tags)
-
-      var object = {
-        'title': title,
-        'body': body,
+      let object = {
+        'title': $('#input-title').val(),
+        'body': $('.note-editable').html(),
         'tags': tags,
         'created': + new Date()
       }
-      //var url = 'http://127.0.0.1:5984/node'
-      var url = 'http://vps272180.ovh.net:5984/node'
-      // POST /someUrl
-      if (title != '') {
-        console.log(title);
-        this.$http.post(url, object).then(response => {
-          //demo.showNotification('top','right')
-          $.notify({
-          icon: "check",
-          message: "Your node has been created successfuly"
 
-          },{
-              type: type[2],
-              timer: 200,
-              placement: {
-                  from: 'top',
-                  align: 'right'
-              }
-          })
+      let url = this.baseUrl + 'node'
+      // POST /someUrl
+      if (object.title != '') {
+
+        this.$http.post(url, object).then(response => {
+
+          var params = {
+            type: 'success',
+            message: 'Your node has been created successfuly',
+            icon: 'check'
+          }
+          store.dispatch('actionShowNotification', params)
 
           $('#input-title').val('')
           $('.note-editable').html('')
@@ -117,18 +114,12 @@ export default {
         })
       }
       else {
-        $.notify({
-        icon: "warning",
-        message: "The title should not be empty"
-
-        },{
-            type: type[4],
-            timer: 200,
-            placement: {
-                from: 'top',
-                align: 'right'
-            }
-        })
+        var params = {
+          type: 'danger',
+          message: 'The title is required!',
+          icon: 'warning'
+        }
+        store.dispatch('actionShowNotification', params)
       }
     }
   },

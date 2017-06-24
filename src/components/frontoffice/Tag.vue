@@ -49,6 +49,10 @@
 
 <script>
 
+import store from '../../store/Store'
+import {mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'Node',
   data () {
@@ -59,8 +63,12 @@ export default {
       nbrResult: ''
     }
   },
+  computed: {
+    ...mapGetters({
+      baseUrl: 'baseUrl'
+    }),
+  },
   mounted() {
-
     this.loading = true
     var id = this.$route.params.id
     this.tag = id
@@ -73,7 +81,6 @@ export default {
         this.nodes = response.body.rows
         this.nbrResult = response.body.rows.length
 
-        console.log(response.body.rows)
     }, (response) => {
        console.log('error', response)
     }).then(_ =>{

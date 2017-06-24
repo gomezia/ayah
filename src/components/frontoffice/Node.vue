@@ -51,8 +51,12 @@
 </template>
 
 <script>
+import store from '../../store/Store'
+import {mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
+
   name: 'Node',
   data () {
     return {
@@ -61,7 +65,13 @@ export default {
       hasTags: false,
     }
   },
+  computed: {
+    ...mapGetters({
+      baseUrl: 'baseUrl'
+    })
+  },
   mounted() {
+
     this.loading = true
     var id = this.$route.params.id
     this.$node = this.$resource('http://vps272180.ovh.net:5984/node/' + id)
