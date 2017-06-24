@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -19,10 +20,18 @@ module.exports = {
             // the "scss" and "sass" values for the lang attribute to the right configs here.
             // other preprocessors should work out of the box, no loader config like this necessary.
             'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
           }
           // other vue-loader options go here
         }
+      },
+      {
+          test: /\.css$/,
+          loader: 'vue-style-loader!css-loader'
+      },
+      {
+          test: /\.scss$/,
+          loader: 'vue-style-loader!css-loader!sass-loader'
       },
       {
         test: /\.js$/,
@@ -30,7 +39,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|otf|woff|ttf|woff2|eot)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]'
@@ -50,7 +59,16 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new FriendlyErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jquery: 'jquery',
+      'window.jQuery': 'jquery',
+      jQuery: 'jquery'
+    })
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {

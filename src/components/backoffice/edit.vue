@@ -71,6 +71,7 @@
 </template>
 
 <script>
+
 import store from '../../store/Store'
 import {mapActions} from 'vuex'
 import {mapGetters} from 'vuex'
@@ -197,9 +198,8 @@ export default {
         }
       })
 
-
        $('#tokenfield-edit').tokenfield()
-       console.log($('#tokenfield-edit').tokenfield('getTokens'))
+
      })
 
 

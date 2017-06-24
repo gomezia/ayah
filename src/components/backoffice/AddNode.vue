@@ -51,6 +51,7 @@ import store from '../../store/Store'
 import {mapActions} from 'vuex'
 import {mapGetters} from 'vuex'
 
+
 export default {
   name: 'AddNode',
   store: store,
@@ -126,9 +127,13 @@ export default {
   mounted(){
     //do something after mounting vue instance
 
-      $('#summernote').summernote();
+    $('#summernote').summernote({
+      codemirror: { // codemirror options
+        theme: 'monokai'
+      }
+    })
 
-      $('#tokenfield').tokenfield()
+    $('#tokenfield').tokenfield()
 
   }
 }
