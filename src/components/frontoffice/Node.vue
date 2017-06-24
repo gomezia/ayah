@@ -27,6 +27,7 @@
     <div class="container">
       <div class="loadersmall" v-if="loading"></div>
         <div class="row">
+          <img v-if="node.image != ''" :src="node.image" alt="" class="img-responsive">
           <div class="col-xs-12 col-sm-8 col-md-9"><h1>{{node.title}}</h1></div>
         </div>
         <div class="row">

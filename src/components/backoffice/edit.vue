@@ -42,17 +42,28 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <!-- image -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label class="control-label">Image</label>
+                                        <photo-upload  :value="node.image" @input="handleFileUpload"></photo-upload>
+                                      </div>
+                                    </div>
+                                </div>
 
                                 <!-- Tags -->
                                 <div class="row">
                                     <div class="col-md-12">
                                       <div class="form-group">
                                         <label class="control-label">Tags</label>
-                                        <input type="text" class="form-control" id="tokenfield-edit" :value="node.tags"/>
+                                        <input type="text" class="form-control" id="tokenfield" :value="node.tags"/>
                                         <span><i>Add several tags separated by comma</i></span>
                                       </div>
                                     </div>
                                 </div>
+
                                 <!-- Actions -->
                                 <button type="submit" class="btn btn-success pull-right" @click.prevent="saveNode()"><i class="material-icons">check</i> Save</button>
                                 <button type="submit" class="btn btn-warning pull-right" @click.prevent="cancel()"><i class="material-icons">cancel</i> cancel</button>
@@ -60,9 +71,7 @@
                             </form>
                         </div>
                     </div>
-
-
-                  </div>
+                 </div>
               </div>
           </div>
         </div>
@@ -76,6 +85,7 @@ import store from '../../store/Store'
 import {mapActions} from 'vuex'
 import {mapGetters} from 'vuex'
 
+import PhotoUpload from'./editor/PhotoUpload.vue'
 import SidebarMenu from './SidebarMenu.vue'
 // Main Menu
 import Sidebar from './Sidebar.vue'
@@ -87,18 +97,21 @@ export default {
         nodeToEdit: '',
         loading: false,
         node: '',
+        value: '',
+        img: ''
       }
   },
   components: {
-    SidebarMenu, Sidebar
+    SidebarMenu, Sidebar, PhotoUpload
   },
   computed: {
     ...mapGetters({
-      baseUrl: 'baseUrl'
+      baseUrl: 'baseUrl',
+      allTags: 'allTags'
     }),
   },
   methods: {
-    ...mapActions(['actionShowNotification']),
+    ...mapActions(['actionShowNotification', 'actionLoadTags', 'actionLaodTokenField']),
     saveNode() {
       var title = $('#input-title').val()
       var body =  $('.note-editable').html()
@@ -112,6 +125,7 @@ export default {
         '_rev': this.node._rev,
         'title': title,
         'body': body,
+        'image': this.img,
         'tags': tags,
         'created': this.node.created,
         'updated': + new Date()
@@ -174,17 +188,20 @@ export default {
     },
     cancel() {
       this.$router.push('/content')
+    },
+    handleFileUpload(file){
+        let form = new FormData();
+        form.append('photo', file);
+        this.img = file['data']
     }
   },
   mounted(){
 
     var url = 'http://vps272180.ovh.net:5984/node/' + this.$route.params.id
     //var url = 'http://127.0.0.1:5984/node/' + this.$route.params.id
-
     this.loading = true
     this.$http.get(url)
       .then(response => {
-        console.log(response.data)
         this.node = response.data
     }, response => {
       // error callback
@@ -198,10 +215,18 @@ export default {
         }
       })
 
-       $('#tokenfield-edit').tokenfield()
+      store.dispatch('actionLoadTags')
+
+      let tags = store.getters.allTags.map(item=>{
+        return {
+          value: item.key
+        }
+      })
+
+
+      store.dispatch('actionLaodTokenField', tags)
 
      })
-
 
 
   }

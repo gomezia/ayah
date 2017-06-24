@@ -35,8 +35,11 @@
                               </div>
                           </div>
 
+                          <photo-upload  :value="value" @input="handleFileUpload"></photo-upload>
+
                           <button type="submit" class="btn btn-primary pull-right" @click.prevent="saveNode()">Save</button>
                           <div class="clearfix"></div>
+
                       </form>
                   </div>
               </div>
@@ -51,6 +54,7 @@ import store from '../../store/Store'
 import {mapActions} from 'vuex'
 import {mapGetters} from 'vuex'
 
+import PhotoUpload from'./editor/PhotoUpload.vue'
 
 export default {
   name: 'AddNode',
@@ -58,7 +62,12 @@ export default {
   data() {
     return {
       tags: '',
+      img: '',
+      value: ''
     }
+  },
+  components: {
+    PhotoUpload
   },
   computed: {
     ...mapGetters({
@@ -66,7 +75,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(['actionShowNotification']),
+    ...mapActions(['actionShowNotification', 'actionLaodTokenField', 'actionLoadTags']),
     saveNode() {
 
       let tags = []
@@ -78,6 +87,7 @@ export default {
       let object = {
         'title': $('#input-title').val(),
         'body': $('.note-editable').html(),
+        'image': this.img,
         'tags': tags,
         'created': + new Date()
       }
@@ -118,7 +128,7 @@ export default {
         var params = {
           type: 'danger',
           message: 'The title is required!',
-          icon: 'warning'
+          icon: 'warning',
         }
         store.dispatch('actionShowNotification', params)
       }
@@ -133,8 +143,20 @@ export default {
       }
     })
 
-    $('#tokenfield').tokenfield()
+    store.dispatch('actionLoadTags')
 
+    let tags = store.getters.allTags.map(item=>{
+      return {
+        value: item.key
+      }
+    })
+
+    store.dispatch('actionLaodTokenField', tags)
+
+  },
+  created() {
+    //do something after creating vue instance
+    store.dispatch('actionLoadTags')
   }
 }
 </script>
