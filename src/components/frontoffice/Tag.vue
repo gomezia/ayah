@@ -30,28 +30,34 @@
     </div>
 
     <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-9">
+          <h2>{{nbrResult}} result for Tag "{{tag}}"</h2>
 
-      <h2>{{nbrResult}} result for Tag "{{tag}}"</h2>
+          <div v-for="node in nodes" class="blog-node">
+            <h3><router-link :to="{name: 'node', params: {id: node.id}}" class="item">{{node.value.title}}</router-link></h3>
+            <!-- <p>{{date | moment("from", "now")}}</p> -->
+            <p>{{node.date | moment("dddd, MMMM Do YYYY") }}</p>
+          </div>
 
-      <div v-for="node in nodes" class="blog-node">
-        <h3><router-link :to="{name: 'node', params: {id: node.id}}" class="item">{{node.value.title}}</router-link></h3>
-        <!-- <p>{{date | moment("from", "now")}}</p> -->
-        <p>{{node.date | moment("dddd, MMMM Do YYYY") }}</p>
+          <router-link :to="{name: 'blog'}" class="item">
+            <i class="material-icons">back</i>
+            <p>< Back to Home</p>
+          </router-link>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <!-- Sidebar -->
+        </div>
       </div>
-
-      <router-link :to="{name: 'blog'}" class="item">
-        <i class="material-icons">back</i>
-        <p>< Back to Home</p>
-      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-
 import store from '../../store/Store'
 import {mapActions} from 'vuex'
 import {mapGetters} from 'vuex'
+import Tags from './Tags.vue'
 
 export default {
   name: 'Node',

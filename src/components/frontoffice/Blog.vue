@@ -38,10 +38,17 @@
 
 
     <div class="container">
-      <div v-for="node in nodes" class="blog-node">
-        <h2><router-link :to="{name: 'node', params: {id: node._id}}" class="item">{{node.title}}</router-link></h2>
-        <!-- <p>{{date | moment("from", "now")}}</p> -->
-        <p>{{node.date | moment("dddd, MMMM Do YYYY") }}</p>
+      <div class="row">
+        <div class="col-xs-12 col-md-9">
+          <div v-for="node in nodes" class="blog-node">
+            <h2><router-link :to="{name: 'node', params: {id: node._id}}" class="item">{{node.title}}</router-link></h2>
+            <!-- <p>{{date | moment("from", "now")}}</p> -->
+            <p>{{node.date | moment("dddd, MMMM Do YYYY") }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <Tags></Tags>
+        </div>
       </div>
     </div>
   </div>
@@ -51,10 +58,14 @@
 import store from '../../store/Store'
 import {mapActions} from 'vuex'
 import {mapGetters} from 'vuex'
+import Tags from './Tags.vue'
 
 export default {
   name: 'Blog',
   store: store,
+  components: {
+    Tags
+  },
   data() {
     return {
       loading: false,
@@ -71,7 +82,7 @@ export default {
   },
   mounted() {
     this.loading = true
-    this.actionLoadNodes()
+    store.dispatch('actionLoadNodes')
     this.loading = false
   }
 }

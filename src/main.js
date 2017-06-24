@@ -14,7 +14,9 @@ Vue.use(Moment)
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/css/material-dashboard.css'
 //http://sliptree.github.io/bootstrap-tokenfield
+import './assets/css/tags/tokenfield-typeahead.min.css'
 import './assets/css/tags/bootstrap-tokenfield.min.css'
+
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/monokai.css'
 import 'summernote/dist/summernote.css'
@@ -26,6 +28,7 @@ import './assets/js/material-dashboard.js'
 import './assets/js/bootstrap-notify.js'
 import './assets/js/material-kit.js'
 import './assets/js/tags/bootstrap-tokenfield.js'
+import './assets/js/tags/typeahead.bundle.min.js'
 import './assets/js/summernote/codemirror.js'
 import './assets/js/summernote/xml.js'
 import './assets/js/summernote/formatting.js'
