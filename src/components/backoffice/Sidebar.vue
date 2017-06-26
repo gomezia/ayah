@@ -4,13 +4,13 @@
       <li>
         <router-link :to="{name: 'dashboard'}" class="item">
           <i class="material-icons">dashboard</i>
-          <p>Dashboard</p>
+          <p>Add content</p>
         </router-link>
       </li>
       <li>
         <router-link :to="{name: 'content'}" class="item">
           <i class="material-icons">list</i>
-          <p>Content</p>
+          <p>List/Edit Content</p>
         </router-link>
       </li>
       <li>

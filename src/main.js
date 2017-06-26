@@ -37,6 +37,24 @@ import './assets/js/summernote/summernote.js'
 
 
 
+/////////// Scroll TO TOP
+$(document).ready(function() {
+  $(".ScrollTop").hide();
+  $(window).scroll(function() {
+      if ($(this).scrollTop() > 100) {
+          $(".ScrollTop").fadeIn();
+      } else {
+          $(".ScrollTop").fadeOut();
+      }
+  });
+})
+
+$('a.ScrollTop').click(function(){
+  $("body,html").animate({
+    scrollTop: 0
+  }, 800);
+})
+
 
 const router = new VueRouter({
   routes, // short for routes: routes

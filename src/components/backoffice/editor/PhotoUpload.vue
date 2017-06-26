@@ -1,16 +1,22 @@
 <template>
   <div class="photo-upload" :class="disabled ? 'disabled' : 'enabled'">
-    <div class="uploader" :class="{hovering: hovering}" :style="{backgroundImage: backgroundImage}" ref="uploader">
-      <span v-show="!(value || preview)" class="upload-instructions" style="color: black;">
-        Click or drag
-        <br>
-        image here
-        <br>
-        to upload...
-      </span>
-      <input class="file-photo" type="file" @change="handleImage" @dragenter="hovering = true"
-             @dragleave="hovering = false" :disabled="disabled"/>
+    <div class="uplaod-container">
+      <div v-on:mouseover="mouseOver" v-on:mouseout="mouseOver" class="uploader" :class="{hovering: hovering}" :style="{backgroundImage: backgroundImage}" ref="uploader">
+        <span v-show="!(value.data || preview)" class="upload-instructions" style="color: black;">
+          <i class="material-icons">photo</i> <br>Click or drag image here to upload...
+        </span>
+        <input class="file-photo" type="file" @change="handleImage" @dragenter="hovering = true"
+               @dragleave="hovering = false" :disabled="disabled"/>
+      </div>
     </div>
+    <div class="edit-infos" v-show="mouseActive && value.data">
+      <p>
+        <strong class="text-warning">{{imageName}}</strong><br>
+        <span><i class="material-icons">photo</i></span><br>
+        <span>Drag and drop or click to replace</span><br>
+      </p>
+    </div>
+    <button type="btn btn-warning" name="remove" @click.prevent="removeFile" >Remove</button>
   </div>
 </template>
 
@@ -18,19 +24,24 @@
   .uploader {
     position: relative;
     overflow: hidden;
-    width: 150px;
+    width: 100%;
     height: 150px;
-    background-color: #f3f3f3;
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
     border: 2px dashed #e8e8e8;
   }
-  .enabled .uploader.hovering {
-    background-color: #bbb;
-  }
-  .enabled .uploader:hover {
-    background-color: skyblue;
+
+  .uplaod-container {
+    background-size: 30px 30px;
+    background-image: -webkit-linear-gradient(135deg,#F6F6F6 25%,transparent 25%,transparent 50%,#F6F6F6 50%,#F6F6F6 75%,transparent 75%,transparent);
+    background-image: linear-gradient(-45deg,#F6F6F6 25%,transparent 25%,transparent 50%,#F6F6F6 50%,#F6F6F6 75%,transparent 75%,transparent);
+}
+  .uplaod-container:hover {
+    -webkit-animation:progress 2s linear infinite;
+    -moz-animation:progress 2s linear infinite;
+    -ms-animation:progress 2s linear infinite;
+    animation:progress 2s linear infinite;
   }
   .upload-instructions {
     position: absolute;
@@ -59,6 +70,48 @@
     z-index: 1;
     border: none;
   }
+  .edit-infos{
+    position: absolute;
+    top: 32px;
+    height: 150px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.67);
+    color: white;
+text-align: center;
+  }
+
+  @-webkit-keyframes progress{
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 60px 30px;
+    }
+  }
+  @-moz-keyframes progress{
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 60px 30px;
+    }
+  }
+  @-ms-keyframes progress{
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 60px 30px;
+    }
+  }
+  @keyframes progress{
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 60px 30px;
+    }
+  }
 </style>
 
 <script>
@@ -81,21 +134,36 @@
                 };
 
                 reader.readAsDataURL(files[0]);
+            },
+            removeFile(event) {
+              this.preview = ''
+              this.$emit('input', this.preview)
+            },
+            mouseOver(){
+              this.mouseActive = !this.mouseActive;
             }
         },
         data() {
             return {
                 hovering: false,
-                preview: null
+                preview: null,
+                mouseActive: false
             }
         },
         computed: {
             backgroundImage() {
-                let image = this.preview || this.value;
+                let image = this.preview || this.value.data;
                 if (!image) {
                     return null;
                 }
                 return `url('${image}')`;
+            },
+            imageName() {
+              let name = this.value.name
+              if (!name) {
+                  return null
+              }
+              return name
             }
         }
     }

@@ -26,7 +26,7 @@
                                     <div class="col-md-12">
                                       <div class="form-group label-floating">
                                         <label class="control-label">Title</label>
-                                        <input id="input-title" type="text" class="form-control" :value="node.title">
+                                        <input id="input-title" type="text" class="form-control" :value="content.title">
                                       </div>
                                     </div>
                                 </div>
@@ -37,19 +37,18 @@
                                         <div class="form-group">
                                             <label>Body</label>
                                             <div class="form-group label-floating">
-                                                <div id="summernote" v-html="node.body"></div>
+                                                <div id="summernote" v-html="content.body"></div>
                                              </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- image -->
                                 <div class="row">
                                     <div class="col-md-12">
                                       <div class="form-group">
                                         <label class="control-label">Image</label>
-                                        <photo-upload  :value="node.image" @input="handleFileUpload"></photo-upload>
-                                      </div>
+                                        <photo-upload  :value="img" @input="handleFileUpload"></photo-upload>                                      </div>
                                     </div>
                                 </div>
 
@@ -58,7 +57,7 @@
                                     <div class="col-md-12">
                                       <div class="form-group">
                                         <label class="control-label">Tags</label>
-                                        <input type="text" class="form-control" id="tokenfield" :value="node.tags"/>
+                                        <input type="text" class="form-control" id="tokenfield" :value="content.tags"/>
                                         <span><i>Add several tags separated by comma</i></span>
                                       </div>
                                     </div>
@@ -94,9 +93,8 @@ export default {
   name: 'Edit',
   data() {
       return {
-        nodeToEdit: '',
         loading: false,
-        node: '',
+        content: '',
         value: '',
         img: ''
       }
@@ -121,19 +119,19 @@ export default {
       })
 
       var object = {
-        '_id': this.node._id,
-        '_rev': this.node._rev,
+        '_id': this.content._id,
+        '_rev': this.content._rev,
         'title': title,
         'body': body,
         'image': this.img,
         'tags': tags,
-        'created': this.node.created,
+        'created': this.content.created,
         'updated': + new Date()
       }
 
 
 
-      var url = 'http://vps272180.ovh.net:5984/node/' + this.node._id
+      var url = 'http://vps272180.ovh.net:5984/node/' + this.content._id
       //var url = 'http://127.0.0.1:5984/node/' + this.node._id
 
 
@@ -190,9 +188,12 @@ export default {
       this.$router.push('/content')
     },
     handleFileUpload(file){
-        let form = new FormData();
-        form.append('photo', file);
-        this.img = file['data']
+      this.img = {
+        'name': file.name,
+        'data': file.data,
+        'size': file.size
+      }
+      // this.content.image = this.img
     }
   },
   mounted(){
@@ -202,7 +203,9 @@ export default {
     this.loading = true
     this.$http.get(url)
       .then(response => {
-        this.node = response.data
+        this.content = response.data
+        this.img = this.content.image
+        console.log(this.content.image);
     }, response => {
       // error callback
     }).then(_ =>{

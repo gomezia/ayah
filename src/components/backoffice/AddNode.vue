@@ -35,9 +35,18 @@
                               </div>
                           </div>
 
-                          <photo-upload  :value="value" @input="handleFileUpload"></photo-upload>
 
-                          <button type="submit" class="btn btn-primary pull-right" @click.prevent="saveNode()">Save</button>
+                          <!-- image -->
+                          <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label class="control-label">Image</label>
+                                  <photo-upload  :value="img" @input="handleFileUpload"></photo-upload>
+                                </div>
+                              </div>
+                          </div>
+
+                          <button type="submit" class="btn btn-primary pull-right" @click.prevent="saveNode()">Publish</button>
                           <div class="clearfix"></div>
 
                       </form>
@@ -62,8 +71,11 @@ export default {
   data() {
     return {
       tags: '',
-      img: '',
-      value: ''
+      img: {
+        'data': '',
+        'name': '',
+        'size': ''
+      }
     }
   },
   components: {
@@ -132,6 +144,13 @@ export default {
         }
         store.dispatch('actionShowNotification', params)
       }
+    },
+    handleFileUpload(file){
+        this.img = {
+          'name': file.name,
+          'data': file.data,
+          'size': file.size
+        }
     }
   },
   mounted(){

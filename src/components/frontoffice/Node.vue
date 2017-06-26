@@ -27,12 +27,12 @@
     <div class="container">
       <div class="loadersmall" v-if="loading"></div>
         <div class="row">
-          <img v-if="node.image != ''" :src="node.image" alt="" class="img-responsive">
           <div class="col-xs-12 col-sm-8 col-md-9"><h1>{{node.title}}</h1></div>
         </div>
         <div class="row">
           <div class="col-xs-12 col-sm-8 col-md-9">
             <p><i class="material-icons time-icon">access_time</i> <span class="text-time">{{node.created | moment("dddd, MMMM Do YYYY") }}</span></p>
+            <p<img v-if="node.image != ''" :src="node.image.data" alt="" class="img-responsive"></p>
             <p v-html="node.body"></p>
           </div>
           <div class="col-xs-12 col-sm-4 col-md-3">

@@ -39,15 +39,40 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-9">
-          <div v-for="node in nodes" class="blog-node">
-            <h2><router-link :to="{name: 'node', params: {id: node._id}}" class="item">{{node.title}}</router-link></h2>
-            <!-- <p>{{date | moment("from", "now")}}</p> -->
-            <p>{{node.date | moment("dddd, MMMM Do YYYY") }}</p>
+        <div class="col-xs-9">
+          <div class="row">
+
+            <div class="ui divided items">
+              <div class="item" v-for="node in nodes" v-if="node.title">
+                <div class="image">
+                  <router-link :to="{name: 'node', params: {id: node._id}}">
+                    <img :src="node.image.data" class="img-responsive">
+                  </router-link>
+                </div>
+                <div class="content">
+                  <router-link :to="{name: 'node', params: {id: node._id}}" class="header">{{node.title}}</router-link>
+                  <div class="meta">
+                    <span class="cinema">{{node.date | moment("dddd, MMMM Do YYYY") }}</span>
+                  </div>
+                  <div class="description">
+                    <p></p>
+                  </div>
+                  <div class="extra">
+                    <div v-for="tag in node.tags" class="ui label">
+                      {{tag}}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
         <div class="col-xs-12 col-md-3">
           <Tags></Tags>
+          <Meteo></Meteo>
+
         </div>
       </div>
     </div>
@@ -59,12 +84,13 @@ import store from '../../store/Store'
 import {mapActions} from 'vuex'
 import {mapGetters} from 'vuex'
 import Tags from './Tags.vue'
+import Meteo from './Meteo.vue'
 
 export default {
   name: 'Blog',
   store: store,
   components: {
-    Tags
+    Tags, Meteo
   },
   data() {
     return {
