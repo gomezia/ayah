@@ -71,25 +71,32 @@ export default {
       baseUrl: 'baseUrl'
     })
   },
+  watch: {
+    // call again the method if the route changes
+    '$route': 'loadNode'
+  },
+  methods: {
+    loadNode() {
+
+      this.loading = true
+      var id = this.$route.params.id
+      this.$node = this.$resource(store.getters.baseUrl + '/node/' + id)
+
+      this.$node.query().then((response)=> {
+          this.node = response.body
+          if (response.body.tags.length > 0) {
+            this.hasTags = true
+          }
+          console.log(this.node)
+      }, (response) => {
+         console.log('error', response)
+      }).then(_ =>{
+        this.loading = false
+      })
+    }
+  },
   mounted() {
-
-    this.loading = true
-    var id = this.$route.params.id
-    this.$node = this.$resource('http://vps272180.ovh.net:5984/node/' + id)
-    //this.$node = this.$resource('http://127.0.0.1:5984/node/' + id)
-    console.log(id)
-
-    this.$node.query().then((response)=> {
-        this.node = response.body
-        if (response.body.tags.length > 0) {
-          this.hasTags = true
-        }
-        console.log(this.node)
-    }, (response) => {
-       console.log('error', response)
-    }).then(_ =>{
-      this.loading = false
-    })
+    this.loadNode()
   }
 }
 </script>

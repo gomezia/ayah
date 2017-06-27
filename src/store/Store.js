@@ -9,6 +9,7 @@ const my_state = {
   nodes: {},
   baseUrl: 'http://vps272180.ovh.net:5984/',
   allTags: [],
+  loading: false,
 }
 
 const my_mutations = {
@@ -17,19 +18,23 @@ const my_mutations = {
   },
   LOAD_TAGS: (state, tags) => {
     state.allTags = tags
+  },
+  TOOGLE_LOADING: (state) => {
+    state.loading = !state.loading
   }
 }
 
 const my_getters = {
   getNodes: state => state.nodes,
   baseUrl: state => state.baseUrl,
-  allTags: state => state.allTags
+  allTags: state => state.allTags,
+  getLoading: state => state.loading
 }
 
 const my_actions = {
   actionLoadNodes: (store) => {
     var url = store.getters.baseUrl + 'node/_all_docs?include_docs=true&conflicts=true'
-
+    store.commit("TOOGLE_LOADING")
     // In Store use Vue.http instead of this.$http
     //https://forum.vuejs.org/t/vue-resource-api-call-inside-mutation-doesnt-recognize-vue/2863/7
     Vue.http.get(url)
@@ -38,7 +43,9 @@ const my_actions = {
       response.data.rows.forEach(function(item, index){
         array.push(item.doc)
       })
+
       store.commit("LOAD_NODES", array)
+      store.commit("TOOGLE_LOADING")
 
 
     }, response => {

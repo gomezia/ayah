@@ -32,7 +32,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-9">
-          <h2>{{nbrResult}} result for Tag "{{tag}}"</h2>
+          <h2>{{nbrResult}} result(s) for "{{tag}}"</h2>
 
           <div v-for="node in nodes" class="blog-node">
             <h3><router-link :to="{name: 'node', params: {id: node.id}}" class="item">{{node.value.title}}</router-link></h3>
@@ -75,23 +75,26 @@ export default {
     }),
   },
   mounted() {
-    this.loading = true
-    var id = this.$route.params.id
-    this.tag = id
+    this.loadContentsByTag()
+  },
+  methods: {
+    loadContentsByTag() {
+      this.loading = true
+      var id = this.$route.params.id
+      this.tag = id
 
-    this.$node = this.$resource('http://vps272180.ovh.net:5984/node/_design/ayah/_view/nodeByTag?key="' + id + '"')
-    //this.$node = this.$resource('http://127.0.0.1:5984/node/_design/ayah/_view/nodeByTag?key="' + id + '"')
-    console.log(id)
+      this.$node = this.$resource(store.getters.baseUrl + '/node/_design/ayah/_view/nodeByTag?key="' + id + '"')
 
-    this.$node.query().then((response)=> {
-        this.nodes = response.body.rows
-        this.nbrResult = response.body.rows.length
+      this.$node.query().then((response)=> {
+          this.nodes = response.body.rows
+          this.nbrResult = response.body.rows.length
 
-    }, (response) => {
-       console.log('error', response)
-    }).then(_ =>{
-      this.loading = false
-    })
+      }, (response) => {
+         console.log('error', response)
+      }).then(_ =>{
+        this.loading = false
+      })
+    }
   }
 }
 </script>

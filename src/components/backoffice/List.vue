@@ -103,28 +103,24 @@ export default {
       var url = this.baseUrl + 'node/' + this.nodeTodelete._id + '?rev=' + this.nodeTodelete._rev
 
       this.$http.delete(url).then(response => {
-
-        var params = {
-          type: 'success',
-          message: 'Your content has been deleted',
-          icon: 'check'
-        }
-        store.dispatch('actionShowNotification', params)
         // get status
-        response.status;
+        response.status
 
-        // get status text
-        response.statusText;
+        console.log(response.status)
+        if (response.status == 200) {
+          var updatedNodes = this.nodes.filter(item => {
+            return item._id != this.nodeTodelete._id
+          })
 
-        // get 'Expires' header
-        response.headers.get('Expires');
+          this.actionLoadNodes(updatedNodes)
 
-        var updatedNodes = this.nodes.filter(item => {
-          return item._id != this.nodeTodelete._id
-        })
-
-        this.actionLoadNodes(updatedNodes)
-
+          var params = {
+            type: 'success',
+            message: 'Your content has been deleted',
+            icon: 'check'
+          }
+          store.dispatch('actionShowNotification', params)
+        }
       }, response => {
         // error callback
         var params = {

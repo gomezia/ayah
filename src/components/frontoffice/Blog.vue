@@ -26,7 +26,6 @@
   </nav>
     <div class="container">
       <router-view></router-view>
-      <div class="loadersmall" v-if="loading"></div>
     </div>
       <!-- jumbotron -->
       <div class="jumbotron">
@@ -36,6 +35,7 @@
         </div>
       </div>
 
+    <div class="loadersmall" v-if="loading"></div>
 
     <div class="container">
       <div class="row">
@@ -94,12 +94,13 @@ export default {
   },
   data() {
     return {
-      loading: false,
+
     }
   },
   computed: {
     ...mapGetters({
-      nodes: 'getNodes'
+      nodes: 'getNodes',
+      loading: 'getLoading'
     }),
     date2: _=> + new Date()
   },
@@ -107,9 +108,9 @@ export default {
     ...mapActions(['actionLoadNodes']),
   },
   mounted() {
-    this.loading = true
+
     store.dispatch('actionLoadNodes')
-    this.loading = false
+
   }
 }
 </script>

@@ -129,10 +129,9 @@ export default {
         'updated': + new Date()
       }
 
+      // ES6
+      var url = `${store.getters.baseUrl}/node/${this.content._id}`
 
-
-      var url = 'http://vps272180.ovh.net:5984/node/' + this.content._id
-      //var url = 'http://127.0.0.1:5984/node/' + this.node._id
 
 
       // POST /someUrl
@@ -197,9 +196,7 @@ export default {
     }
   },
   mounted(){
-
-    var url = 'http://vps272180.ovh.net:5984/node/' + this.$route.params.id
-    //var url = 'http://127.0.0.1:5984/node/' + this.$route.params.id
+    var url = `${store.getters.baseUrl}/node/${this.$route.params.id}`
     this.loading = true
     this.$http.get(url)
       .then(response => {

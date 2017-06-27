@@ -164,7 +164,7 @@ export default {
 
     store.dispatch('actionLoadTags')
 
-    let tags = store.getters.allTags.map(item=>{
+    let tags = store.getters.allTags.map(item => {
       return {
         value: item.key
       }
